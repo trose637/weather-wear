@@ -1,21 +1,33 @@
 package com.algonquin.weatherw.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
 
-    // Database Schema
-    // CREATE DATABASE loggy DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-    // CREATE TABLE logs (uuid CHAR(40) NOT NULL PRIMARY KEY, title CHAR(128),
-    // content TEXT, createTimestamp Date);
+    public static Connection getConnectionToDatabase() throws SQLException {
+        Connection c = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Driver Registered");
 
-    private static final String dbUser = "root";
-    private static final String dbPassword = "";
+            c = DriverManager.getConnection("jdbc:mysql://localhost:12345/Capstone?characterEncoding=latin1&useConfigs=maxPerformance","root","hamza");
+            
 
-    public static Connection getConnectionToDatabase() {
-        Connection connection = null;
+        }catch(ClassNotFoundException e) {
+            System.out.println("Error: No MySQL JDBC Driver");
+        }
+        catch (SQLException e) {
+            System.out.println("Error: Connection failed. Check output console");
+            e.printStackTrace();
+        }
 
-        return connection;
+        if(c!=null) {
+            System.out.println("Connection Successful!");
+
+        }
+        return c;
     }
 
 }
