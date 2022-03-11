@@ -1,6 +1,7 @@
 package com.algonquin.weatherw.servlets;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,18 +24,28 @@ public class RegistrationServlet extends HttpServlet{
 	        String email = request.getParameter("email");
 	        String firstName = request.getParameter("firstName");
 	        String lastName = request.getParameter("LastName");
+	        String token = UUID.randomUUID().toString();
 	        
 	        
-	        User user = new User(firstName, lastName, email, password, username);
-	     
-	        service.register(user);
+	        User user = new User(firstName, lastName, email, password, username, token, "pending");
+	        
+	        String body = "please click the link to validate your weather wear email: "+ request.getRequestURL()+"?token="+ token;
+	        service.register(user, body);
 	        
 		
 	  }
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 
-		  response.getOutputStream().println("OK");
+		  String token = request.getParameter("token");
+		  if(token != null) {
+			  service.validateEmail(token);
+			  response.getOutputStream().println("Email Verification Successful");
+		  }
+		  
+		 
+		  
+		
 
 	  }
 	  

@@ -9,7 +9,7 @@ public class DBConnection {
     public static Connection getConnectionToDatabase() throws SQLException {
         Connection c = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Registered");
 
             c = DriverManager.getConnection("jdbc:mysql://localhost:12345/Capstone?characterEncoding=latin1&useConfigs=maxPerformance","root","hamza");
@@ -28,6 +28,7 @@ public class DBConnection {
 
         }
         return c;
+       
     }
 
 }
