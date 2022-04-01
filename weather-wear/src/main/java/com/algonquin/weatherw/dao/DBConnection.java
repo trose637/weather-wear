@@ -1,6 +1,7 @@
 package com.algonquin.weatherw.dao;
 
 import java.sql.Connection;
+//hb
 import java.sql.DriverManager;
 import java.sql.SQLException;
 

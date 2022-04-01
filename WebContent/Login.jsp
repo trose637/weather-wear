@@ -19,13 +19,18 @@
     <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button style="margin-bottom: 10px" type="submit" class="btn btn-primary">Submit</button>
   
   <div class=" ${style}">
     <strong>${msg}</strong> 
   </div>
    
 </form>
+
+  <div>
+   <button onclick="window.location.href='PasswordRecovery.jsp'" style="margin-top: 0px" type="button" class="btn btn-primary">Password Recovery</button>
+  </div>
+
 </div>
 </body>
 </html>

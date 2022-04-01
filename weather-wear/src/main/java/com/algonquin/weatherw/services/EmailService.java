@@ -11,9 +11,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailService {
+import com.algonquin.weatherw.model.User;
+
+public class EmailService implements Observer{
+	
+	
 
     public void sendEmail(String to, String from, String body, String subject) {
+    	
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -65,6 +70,17 @@ public class EmailService {
         }
 
     }
+
+
+	@Override
+	public void update(User user, String action, String message) {
+		
+		if(action.equalsIgnoreCase("insert")) {
+			sendEmail(user.getEmail(), "weatherWear@gmail.com", message , "Weather Wear Email Verification");
+			System.out.println("Email Sent!");
+		}
+		
+	}
 
 }
 

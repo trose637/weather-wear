@@ -8,7 +8,7 @@
   <h2>Weather Wear Account Registration</h2>
   
 <form action="register" method="post">
-
+	
   <div class="mb-3">
     <label for="firstname" class="form-label">FirstName</label>
     <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstName">
@@ -42,6 +42,10 @@
   <div class="mb-3">
     <label for="rePwd" class="form-label">Re-Type Password:</label>
     <input type="password" class="form-control" id="rePwd" placeholder="Enter password" name="rePassword">
+  </div>
+  
+  <div class=" ${style}">
+    <strong>${msg}</strong> 
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>

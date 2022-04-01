@@ -3,6 +3,8 @@ package com.algonquin.weatherw.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.algonquin.weatherw.exceptions.UserNotFoundException;
 import com.algonquin.weatherw.model.User;
 import com.algonquin.weatherw.services.ApplicationService;
 
@@ -47,7 +49,6 @@ public class ApplicationDao implements ApplicationService{
     		
     	} catch (SQLException e) {
     		e.printStackTrace();
-    		
     	}
     	c.close();
     	return 0;
@@ -68,14 +69,48 @@ public class ApplicationDao implements ApplicationService{
   			String pWord = rSet.getString("Password");
   			String status = rSet.getString("UserStatus");
   			user = new User("", "", "", pWord, uName, "", status);
+  		} else {
+  			throw new UserNotFoundException();
   		}
   		
   	} catch (SQLException e) {
   		e.printStackTrace();
   		
-  	}
+  	} catch (UserNotFoundException e) {
+		//hb
+		e.printStackTrace();
+	}
   	c.close();
   	return user;
   }
   
-}
+  //in progress
+  public String returnPassword(String email) throws SQLException{
+	  
+	  Connection c = DBConnection.getConnectionToDatabase();
+	  String pWord = null;
+	  
+  	try {
+  		String select = "select * from Capstone.User where email = ?";
+  		java.sql.PreparedStatement s = c.prepareStatement(select);
+  		s.setString(1, email);
+  		ResultSet rSet = s.executeQuery();		
+  		if(rSet.next()) {
+  			pWord = rSet.getString("Password");
+  		} else {
+  			throw new UserNotFoundException();
+  		}
+  		
+  	} catch (SQLException e) {
+  		e.printStackTrace();
+  		
+  	} catch (UserNotFoundException e) {
+		//hb
+		e.printStackTrace();
+	}
+  	c.close();
+  	return pWord;
+  }
+  }
+  
+
