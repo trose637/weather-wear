@@ -1,0 +1,69 @@
+USE capstone;
+
+
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `UserID` INT NOT NULL,
+  `firstName` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `lastName` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `email` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `userName` CHAR(128) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `Password` CHAR(128) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `UserStatus` CHAR(12) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  `Token` CHAR(35) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE INDEX `ID_UNIQUE` (`UserID` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci
+
+
+CREATE TABLE IF NOT EXISTS `properties` (
+  `propid` INT NOT NULL,
+  `apikey` VARCHAR(35) NULL DEFAULT NULL,
+  `language` VARCHAR(12) NULL DEFAULT NULL,
+  `detail` VARCHAR(12) NULL DEFAULT NULL,
+  `metric` VARCHAR(12) NULL DEFAULT NULL,
+  UNIQUE INDEX `propid_UNIQUE` (`propid` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+
+CREATE TABLE IF NOT EXISTS `city` (
+  `cityid` VARCHAR(10) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  UNIQUE INDEX `city_UNIQUE` (`city` ASC) VISIBLE,
+  UNIQUE INDEX `cityid_UNIQUE` (`cityid` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+
+
+CREATE TABLE IF NOT EXISTS `outfit` (
+  `outfitid` INT NOT NULL AUTO_INCREMENT,
+  `imagename` VARCHAR(25) NULL DEFAULT NULL,
+  `outfitdesc` VARCHAR(30) NULL DEFAULT NULL,
+  `weathertype` VARCHAR(25) NULL DEFAULT NULL,
+  PRIMARY KEY (`outfitid`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+
+
+
+
+
+INSERT INTO `` (`outfitid`,`imagename`,`outfitdesc`,`weathertype`) VALUES (1,'cloudyoutfit.png','Jacket & socks recommended.','cloudy');
+INSERT INTO `` (`outfitid`,`imagename`,`outfitdesc`,`weathertype`) VALUES (2,'sunnyoutfit.png','Sunscreen & sunglasses.','sunny');
+INSERT INTO `` (`outfitid`,`imagename`,`outfitdesc`,`weathertype`) VALUES (3,'snowoutfit.png','Boots, hat & gloves.','snow');
+INSERT INTO `` (`outfitid`,`imagename`,`outfitdesc`,`weathertype`) VALUES (4,'rainoutfit.png','Boots, & umbrella required.','rain');
+
+
+INSERT INTO `` (`propid`,`apikey`,`language`,`detail`,`metric`) VALUES (1,'23KwwQwjNjyvRA9pmzCYi8pkZTNGNcBP','en-us','false','true');
+
+INSERT INTO `` (`cityid`,`city`) VALUES ('1183','Windsor');
+INSERT INTO `` (`cityid`,`city`) VALUES ('49538','Halifax');
+INSERT INTO `` (`cityid`,`city`) VALUES ('52479','Calgary');
+INSERT INTO `` (`cityid`,`city`) VALUES ('53286','Vancouver');
+INSERT INTO `` (`cityid`,`city`) VALUES ('55488','Toronto');
